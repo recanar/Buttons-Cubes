@@ -6,6 +6,9 @@ public class DestroyCubes : MonoBehaviour
 {
     private void OnTriggerExit(Collider other)
     {
-        Destroy(other.gameObject);
+        if (other.gameObject.CompareTag("Cube"))
+        {
+            Destroy(other.gameObject.transform.parent.gameObject);
+        }
     }
 }

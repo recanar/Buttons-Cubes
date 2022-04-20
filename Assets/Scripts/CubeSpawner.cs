@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class CubeSpawner : MonoBehaviour
 {
-    public GameObject cube;
+    private GameObject cube;
     public GameObject cubePrefab;
+
+    [HideInInspector]
+    public KeyCode spawnKey;
+
     public float speed = 1;
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        //Spawn Cube
+        if (Input.GetKeyDown(spawnKey))
         {
-            cube = Instantiate(cubePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            cube = Instantiate(cubePrefab, transform.position+new Vector3(0,0.375f,0), Quaternion.identity);
+            cube.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.SetColor("_Color", gameObject.GetComponent<Renderer>().material.color);
         }
-
-        //Scale the object
-        if (Input.GetKey(KeyCode.Space))
+        //Scale the Cube
+        if (Input.GetKey(spawnKey))
         {
             cube.transform.localScale += new Vector3(0, Time.deltaTime * speed, 0);
+        }
+        //Move Cube
+        if (Input.GetKeyUp(spawnKey))
+        {
+            cube.AddComponent<CubeMover>();
         }
 
     }
