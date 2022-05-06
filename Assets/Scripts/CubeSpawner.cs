@@ -28,7 +28,7 @@ public class CubeSpawner : MonoBehaviour
         //Move Cube
         if (Input.GetKeyUp(spawnKey))
         {
-            cube.AddComponent<CubeMover>();
+            cube.GetComponent<CubeMover>().MoveEnable();
         }
 
     }

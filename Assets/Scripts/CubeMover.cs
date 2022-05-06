@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class CubeMover : MonoBehaviour
 {
+    private bool canMove;
     void Update()
     {
-        gameObject.transform.Translate(Vector3.up* Time.deltaTime);
+        if (canMove)
+        gameObject.transform.Translate(transform.up*Time.deltaTime);
+    }
+    public void MoveEnable()
+    {
+        canMove = true;
     }
 }
